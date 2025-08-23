@@ -5,13 +5,13 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.get("/", (req: Request, res: Response) => {
-    res.send("HELLO WORLD!");
-});
-
-app.get("/:name", (req: Request, res: Response) => {
+app.get("/:name?", (req: Request, res: Response) => {
     const { name } = req.params;
-    res.send(`Hi there, ${name}`);
+    if (name) {
+        res.send(`Hi there, ${name}`);
+    } else {
+        res.send("HELLO WORLD!");
+    }
 });
 
 app.listen(PORT, () => {
