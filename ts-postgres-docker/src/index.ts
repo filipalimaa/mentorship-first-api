@@ -20,8 +20,11 @@ pool.on("error", (err) => {
     console.error("Unexpected PG error:", err);
 });
 
-app.get("/:id(\\d+)", async (req: Request, res: Response) => {
-    const id = Number(req.params.id);
+app.get("/:id", async (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+  if (isNaN(id)) {
+    return res.status(400).json({ error: "id must be a number" });
+  }
 
     try {
         const result = await pool.query<{ name: string }>(
