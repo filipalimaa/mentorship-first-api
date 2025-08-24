@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   db:
     image: postgres:16-alpine
@@ -25,7 +23,7 @@ services:
       dockerfile: Dockerfile
     container_name: mini_api
     env_file:
-      - .env
+      - .venv
     environment:
       DB_HOST: db
     depends_on:
