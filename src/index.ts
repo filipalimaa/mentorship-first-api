@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.get("/:name?", (req: Request, res: Response) => {
+app.get("/:name", (req: Request, res: Response) => {
     const { name } = req.params;
     if (name) {
         res.send(`Hi there, ${name}`);
